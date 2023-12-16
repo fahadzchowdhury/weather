@@ -67,69 +67,57 @@ function api()
     }
 
     // Echo the HTML content dynamically
-    echo <<<HTML
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <title>Weather Forecast</title>
-</head>
-<body class="d-flex flex-column min-vh-100">
-    <div class="wrapper">
-        <div class="d-flex justify-content-center">
-            <form class="mt-5 d-flex " method="post" action="">
-                <input name="searchBar" id="searchBar" class="form-control" type="search" placeholder=" Enter location">
-                <button type="submit" class="btn btn-lg btn-success mx-2">Search</button>
-            </form>
-        </div>
-        <div class=" container text-center" id="currentCity">
-            <h6 class="text-white my-5">Current Location: {$weatherData['city']['name']}, {$weatherData['city']['country']}</h6>
-        </div>
-        <div id="info" class="container gap-5 mb-5 d-flex flex-wrap justify-content-center">
-HTML;
-
+    echo '<!DOCTYPE html>';
+    echo '<html lang="en">';
+    echo '<head>';
+    echo '<meta charset="UTF-8">';
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+    echo '<link rel="stylesheet" href="bootstrap.min.css">';
+    echo '<link rel="stylesheet" href="styles.css">';
+    echo '<title>Weather Forecast</title>';
+    echo '</head>';
+    echo '<body class="d-flex flex-column min-vh-100">';
+    echo '<div class="wrapper">';
+    echo '<div class="d-flex justify-content-center">';
+    echo '<form class="mt-5 d-flex " method="post" action="">';
+    echo '<input name="searchBar" id="searchBar" class="form-control" type="search" placeholder=" Enter location">';
+    echo '<button type="submit" class="btn btn-lg btn-success mx-2">Search</button>';
+    echo '</form>';
+    echo '</div>';
+    echo '<div class=" container text-center" id="currentCity">';
+    echo '<h6 class="text-white my-5">Current Location: ' . $weatherData['city']['name'] . ', ' . $weatherData['city']['country'] . '</h6>';
+    echo '</div>';
+    echo '<div id="info" class="container gap-5 mb-5 d-flex flex-wrap justify-content-center">';
+    
     // Loop through the weather data and generate HTML content
     for ($i = 0; $i < min(8, count($weatherData['list'])); $i++) {
         $newDate = date('d F', strtotime($weatherData['list'][$i]['dt_txt']));
         $newTime = date('h:i A', strtotime($weatherData['list'][$i]['dt_txt']));
 
-        echo <<<HTML
-        <div class="card" style="width: 14rem;">
-            <div class="card-body">
-                <div class="card-text text-center">
-                    <h5 class="card-title text-bold">{$newDate}</h5>
-                    <h5 class="card-title text-bold">{$newTime}</h5>
-                    <h6 class="card-text text-bold">{$weatherData['list'][$i]['weather'][0]['main']}</h6>
-                    <h6 class="card-text">Temperature: {$weatherData['list'][$i]['main']['temp']}</h6>
-                    <h6 class="card-text">Feels like: {$weatherData['list'][$i]['main']['feels_like']}°C </h6>
-                    <h6 class="card-text">Humidity: {$weatherData['list'][$i]['main']['humidity']} </h6>
-                    <h6 class="card-text">Min Temp: {$weatherData['list'][$i]['main']['temp_min']} </h6>
-                    <h6 class="card-text">Max Temp: {$weatherData['list'][$i]['main']['temp_max']} </h6>
-                </div>
-            </div>
-        </div>
-HTML;
+        echo '<div class="card" style="width: 14rem;">';
+        echo '<div class="card-body">';
+        echo '<div class="card-text text-center">';
+        echo '<h5 class="card-title text-bold">' . $newDate . '</h5>';
+        echo '<h5 class="card-title text-bold">' . $newTime . '</h5>';
+        echo '<h6 class="card-text text-bold">' . $weatherData['list'][$i]['weather'][0]['main'] . '</h6>';
+        echo '<h6 class="card-text">Temperature: ' . $weatherData['list'][$i]['main']['temp'] . '</h6>';
+        echo '<h6 class="card-text">Feels like: ' . $weatherData['list'][$i]['main']['feels_like'] . '°C </h6>';
+        echo '<h6 class="card-text">Humidity: ' . $weatherData['list'][$i]['main']['humidity'] . '</h6>';
+        echo '<h6 class="card-text">Min Temp: ' . $weatherData['list'][$i]['main']['temp_min'] . '</h6>';
+        echo '<h6 class="card-text">Max Temp: ' . $weatherData['list'][$i]['main']['temp_max'] . '</h6>';
+        echo '</div></div></div>';
     }
 
-    echo <<<HTML
-        </div>
-        <footer class="text-center bottom">
-            <h5><b>© Anika Tabassum 2023. All rights reserved.</b></h5>
-            <div class="container d-flex gap-2 justify-content-center" style="width: 20%;">
-                <a href="https://www.linkedin.com/in/anikatabassumm" target="_blank">
-                </a>
-                <a href="https://github.com/AnikaTabassumm" target="_blank">
-                </a>
-            </div>
-        </footer>
-    </div>
-    <!-- Include Bootstrap JS if needed -->
-    <!-- <script src="bootstrap.bundle.min.js"></script> -->
-</body>
-</html>
-HTML;
+    echo '</div>';
+    echo '<footer class="text-center bottom">';
+    echo '<h5><b>© Anika Tabassum 2023. All rights reserved.</b></h5>';
+    echo '<div class="container d-flex gap-2 justify-content-center" style="width: 20%;">';
+    echo '<a href="https://www.linkedin.com/in/anikatabassumm" target="_blank"></a>';
+    echo '<a href="https://github.com/AnikaTabassumm" target="_blank"></a>';
+    echo '</div>';
+    echo '</footer>';
+    echo '</div>';
+    echo '</body>';
+    echo '</html>';
 }
 ?>
