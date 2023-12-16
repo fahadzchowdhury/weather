@@ -1,0 +1,21 @@
+body{
+    background-image: url(weather_img.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+    margin: 0;
+}
+
+
+footer h5{
+    color: whitesmoke;
+}
+
+.bottom{
+    margin-top: auto;
+    padding: 10px;
+}
+.wrapper {
+    flex-grow: 1;
+}
